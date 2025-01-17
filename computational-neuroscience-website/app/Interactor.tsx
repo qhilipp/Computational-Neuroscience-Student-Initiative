@@ -40,29 +40,38 @@ class Interactor {
   }
 
   async getProjects(): Promise<Project[]> {
-    try {
-      const response = await fetch(this.apiUrl);
-      
-      if (!response.ok) {
-        throw new Error(`Fehler: ${response.status} ${response.statusText}`);
-      }
-
-      const data = await response.json();
-
-      console.log(data);
-
-      //const projects = await Promise.all(
-      //  data
-      //    .map(async (item) => {
-      //      return new Project({title: item.name});
-      //    })
-      //);
-      return []
-      //return projects.filter((project) => project !== null);
-    } catch (err) {
-      throw new Error(JSON.stringify(err));
+  try {
+    const response = await fetch(this.apiUrl);
+    if (!response.ok) {
+      throw new Error(`Fehler: ${response.status} ${response.statusText}`);
     }
+
+    const data: Array<{ type: string; name: string; url: string }> = await response.json();
+
+    const projects = await Promise.all(
+      data
+        .filter((item) => item.type === "dir")
+        .map(async (item) => {
+          try {
+            const config = await this.fetchConfigFileContent(item.name);
+            return new Project({
+              title: item.name,
+              description: config.description,
+              url: config.url,
+              author: config.author,
+            });
+          } catch (err) {
+            console.warn(`Warnung: Fehler beim Verarbeiten von ${item.name}`, err);
+            return null;
+          }
+        })
+    );
+
+    return projects.filter((project) => project !== null);
+  } catch (err) {
+    throw new Error(JSON.stringify(err));
   }
+}
 
 }
 

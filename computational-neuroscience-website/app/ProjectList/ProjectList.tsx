@@ -21,7 +21,6 @@ const ProjectList: React.FC<ProjectListProps> = async ({ owner, repo }) => {
   return (
     <div className={styles.container}>
       <h1 className={styles.title}>Our Projects</h1>
-      <h1>{projects.length}</h1>
       <div className={styles.scrollContainer}>
         {error && <p style={{ color: "red" }}>{error}</p>}
         {projects.map((project, index) => (
