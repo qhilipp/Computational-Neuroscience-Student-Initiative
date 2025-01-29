@@ -3,9 +3,9 @@ import MembersList from "./MembersList/MembersList";
 import { Member } from "./MemberCard/types";
 
 export default function Home() {
-  let title = "Computational Neuroscience Student Initiative";
-  let description = "The Computational Neuroscience Student Initiative is a student-led organization founded by Philipp Kathöfer and Sven Spehr at the University of Münster. Our mission is to create a collaborative space for students interested in the fascinating intersection of neuroscience and computational science.\nWe meet every two weeks to explore and discuss cutting-edge topics in computational neuroscience. During each session, one member presents a topic they have researched, sparking discussions and fostering a deeper understanding of this rapidly evolving field.";
-  let members: Member[] = [
+  const title = "Computational Neuroscience Student Initiative";
+  const description = "The Computational Neuroscience Student Initiative is a student-led organization founded by Philipp Kathöfer and Sven Spehr at the University of Münster. Our mission is to create a collaborative space for students interested in the fascinating intersection of neuroscience and computational science.\nWe meet every two weeks to explore and discuss cutting-edge topics in computational neuroscience. During each session, one member presents a topic they have researched, sparking discussions and fostering a deeper understanding of this rapidly evolving field.";
+  const members: Member[] = [
     new Member("Philipp Kathöfer", "Co-founder", "https://www.linkedin.com/in/philipp-kathöfer-22045a26a/", "https://github.com/qhilipp", "https://github.com/qhilipp.png"),
     new Member("Sven Spehr", "", ""),
     new Member("Luke Runde", "", ""),
