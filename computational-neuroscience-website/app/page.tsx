@@ -16,32 +16,44 @@ export default function Home() {
   ]
 
   return (
-    <div className="flex flex-col md:flex-row gap-8 p-6 h-screen"> {/* h-[600px] durch h-screen ersetzt */}
-      <div className="md:w-1/2 flex flex-col gap-6 min-h-0"> {/* min-h-0 hinzugefügt */}
-        {/* Obere Card nimmt nur benötigten Platz */}
-        <div className="card" style={{flexShrink: "0"}}> {/* flex-1 entfernt, shrink-0 hinzugefügt */}
-          <h1>
-            {title}
-          </h1>
-          <p className="description" style={{marginBottom: "20px"}}>
-            {description}
-          </p>
-          <h2>Contact</h2>
-          <div className="flex items-center gap-2">
-            <a href="mailto:philippkathoefer@icloud.com">philippkathoefer@icloud.com</a>
-            <span>•</span>
-            <a href="mailto:info@example.com">info@example.com</a>
-          </div>
-        </div>
-        {/* Untere Card nimmt restlichen Platz */}
-        <div className="card" style={{flex: 1}}> {/* flex-1 und overflow-auto hinzugefügt */}
-          <h2>Team Members</h2>
-          <MembersList members={members} />
-        </div>
-      </div>
-      <div className="md:w-1/2 overflow-hidden">
-        <ProjectList owner="qhilipp" repo="Computational-Neuroscience-Student-Initiative"/>
+    <div className="flex min-h-screen flex-col gap-4 p-4 md:flex-row md:gap-8 md:p-6">
+  <div className="flex flex-col gap-4 md:w-1/2">
+    {/* Info Card */}
+    <div className="card">
+      <h1 className="mb-4 text-2xl font-bold">
+        {title}
+      </h1>
+      <p className="mb-6 text-gray-600">
+        {description}
+      </p>
+      <h2 className="mb-3 text-xl font-semibold">Contact</h2>
+      <div className="flex flex-wrap items-center gap-2 text-sm">
+        <a href="mailto:philippkathoefer@icloud.com" className="text-blue-600 hover:underline">
+          philippkathoefer@icloud.com
+        </a>
+        <span className="text-gray-400">•</span>
+        <a href="mailto:info@example.com" className="text-blue-600 hover:underline">
+          info@example.com
+        </a>
       </div>
     </div>
+
+    {/* Team Members Card */}
+    <div className="card">
+      <h2 className="mb-4 text-xl font-semibold">Team Members</h2>
+      <div className="overflow-y-auto">
+        <MembersList members={members} />
+      </div>
+    </div>
+  </div>
+
+  {/* Projects Section - now part of main page scroll on mobile */}
+  <div className="md:h-screen md:w-1/2 md:overflow-y-auto">
+    <ProjectList 
+      owner="qhilipp" 
+      repo="Computational-Neuroscience-Student-Initiative"
+    />
+  </div>
+</div>
   );
 }
