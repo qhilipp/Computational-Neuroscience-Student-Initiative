@@ -3,13 +3,15 @@ export class Member {
     tag?: string;
     linkedIn?: string;
     gitHub?: string;
+    stackOverflow?: string;
     image?: string;
 
-    constructor(name: string, tag?: string, linkedIn?: string, gitHub?: string, image?: string) {
+    constructor(name: string, tag?: string, linkedIn?: string, gitHub?: string, stackOverflow?: string, image?: string) {
         this.name = name;
         this.tag = tag;
         this.linkedIn = linkedIn;
         this.gitHub = gitHub;
+        this.stackOverflow = stackOverflow;
         this.image = image;
     }
 

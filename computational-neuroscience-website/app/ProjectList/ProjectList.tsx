@@ -15,7 +15,8 @@ const ProjectList: React.FC<ProjectListProps> = async ({ owner, repo }) => {
   try {
     projects = await interactor.getProjects();
   } catch (err) {
-    error = JSON.stringify(err);
+    error = err instanceof Error ? err.message : 'Ein unbekannter Fehler ist aufgetreten';
+    console.error('Fehler beim Laden der Projekte:', err);
   }
 
   return (
